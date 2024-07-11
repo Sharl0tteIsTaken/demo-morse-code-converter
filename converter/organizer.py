@@ -4,10 +4,7 @@ from converter.convert_tables import ConvertTables
 from converter.help_texts import command_text, explain_text, available_text
 
 
-
-# path = '#100Days/day-82-morse_code_converter/converter/config.json'
-# TODO: change path potentionally with `os`
-path = 'C:/Users/88693/Documents/.MyDoc/Projects/#100Days/day-82-morse_code_converter/converter/config.json'
+path = 'converter/config.json'
 
 class Organizer():
     """
@@ -19,6 +16,7 @@ class Organizer():
         and set default values.
         """
         self.operate: bool = True
+        self.output:str = ""
         try:
             with open(path, mode="r") as save_file:
                 self.saved_configs:dict[str, dict[str, str]] | dict = json.load(save_file)
@@ -35,6 +33,7 @@ class Organizer():
         and recreate config.json with value from ConvertTables().
         """
         print("there is a problem with saved configurations, setting up default configuration...")
+        self.output += "there is a problem with saved configurations, setting up default configuration..." + "\n"
         self.saved_configs = {}
         with open(path, mode="w") as save_file:
             json.dump(obj=self.saved_configs, fp=save_file, indent=4)
@@ -48,6 +47,7 @@ class Organizer():
         self.config_name:str | None  = 'default'
         self._save_current_config(config_name=self.config_name)
         print("configuration setup successfully.")
+        self.output += "configuration setup successfully." + "\n"
 
     def commands(self, *, user_input:str) -> dict[str, str] | None:
         """
@@ -66,12 +66,16 @@ class Organizer():
         match user_input:
             case '!commands':
                 print(command_text)
+                self.output += command_text + "\n"
             case '!explain':
                 print(explain_text)
+                self.output += explain_text + "\n"
             case '!available':
                 puns:dict[str, str] = ConvertTables.punctuations
                 print(available_text, end="")
                 print(list(puns.keys()))
+                self.output += available_text
+                self.output += str(list(puns.keys())) + "\n"
             case '!show':
                 self.command_show()
             case '!config':
@@ -96,8 +100,10 @@ class Organizer():
         print out the current configs.
         """
         print(f"current configuration name: '{self.config_name:}'")
+        self.output += f"current configuration name: '{self.config_name:}'" + "\n"
         for cfgs in self.configs:
             print(f"{cfgs}: '{self.configs[cfgs]}',")
+            self.output += f"{cfgs}: '{self.configs[cfgs]}'," + "\n"
     
     def command_config(self) -> dict[str, str]:
         """
@@ -108,6 +114,7 @@ class Organizer():
             dict[str, str]: config to pass on to converter
         """
         self.configs:dict[str, str] = {
+            #TODO: figure out the last solution to input().
             'dot': input(f"letter for `dot`(currently: '{self.configs['dot']}'): "),
             'dash': input(f"letter for `dash`(currently: '{self.configs['dash']}'): "),
             'code_space': input(f"letter for `inter gap`(currently: '{self.configs['code_space']}'{self._get_aka(self.configs['code_space'])}): "),
@@ -116,9 +123,12 @@ class Organizer():
         }
         if not self._exist_by_name():
             print('configuration changed successfully.')
+            self.output += 'configuration changed successfully.' + "\n"
+            #TODO: figure out the last solution to input().
             name = input(f"set a name for this configuration? (will save this configuration, or enter 'cancel' to use !save to name and save configuration later.) ")
             if name == "cancel" or name =="'cancel'":
                 print('canceled.')
+                self.output += 'canceled.' + "\n"
                 config_name = None
                 self.config_name:str | None = config_name
             else:
@@ -127,6 +137,7 @@ class Organizer():
                 self._save_current_config(config_name=config_name)
                 self._update_saved_configs()
                 print(f"you can access this configuration by name: '{config_name}'.")
+                self.output += f"you can access this configuration by name: '{config_name}'." + "\n"
         return self.configs
     
     def command_save(self) -> None:
@@ -136,15 +147,18 @@ class Organizer():
         """
         if self._exist_by_name():
             return None
+        #TODO: figure out the last solution to input().
         name = input("enter name to save configurations(or enter 'cancel' to cancel.): ")
         if name == "cancel" or name =="'cancel'":
             print('canceled.')
+            self.output += 'canceled.' + "\n"
             return None
         config_name = self._unique_name_check(confirm_name=name)
         self.config_name = config_name
         self._save_current_config(config_name=config_name)
         self._update_saved_configs()
         print(f"you can access this configuration by !loadsave with name: '{config_name}'")
+        self.output += f"you can access this configuration by !loadsave with name: '{config_name}'" + "\n"
             
     def command_loadsave(self) -> None:
         """
@@ -152,9 +166,12 @@ class Organizer():
         """
         for config_name in self.saved_configs.keys():
             print(f"{config_name}: " + "{")
+            self.output += f"{config_name}: " + "{" + "\n"
             for cfgs in self.saved_configs[config_name]:
                 print(f"    {cfgs}: '{self.saved_configs[config_name][cfgs]}',")
+                self.output += f"    {cfgs}: '{self.saved_configs[config_name][cfgs]}'," + "\n"
             print("}")
+            self.output += "}" + "\n"
     
     def command_load(self) -> dict[str, str] | None:
         """
@@ -164,6 +181,7 @@ class Organizer():
             dict[str, str]: the chosen config
             None: process canceled
         """
+        #TODO: figure out the last solution to input().
         load_name = input(f"enter configuration name: ")
         load_name = self._name_exist(load_name, default_check=False)
         if load_name is None:
@@ -178,6 +196,7 @@ class Organizer():
         }
         self.config_name = load_name
         print(f"configuration loaded: ", end="")
+        self.output += f"configuration loaded: "
         self.command_show()
         return self.configs
         
@@ -189,12 +208,13 @@ class Organizer():
             old_key (str): old config name
             new_key (str): new config name
         """
+        #TODO: figure out the last solution to input().
         old_key = input("enter the old configuration name: ")
         
         old_key = self._name_exist(old_key, default_check=True)
         if old_key is None:
             return
-                
+        #TODO: figure out the last solution to input().
         name = input("enter the new configuration name: ")
         new_key = self._unique_name_check(confirm_name=name)
         
@@ -205,6 +225,7 @@ class Organizer():
         self.configs = current_config
         self._update_saved_configs()
         print(f"configuration renamed, from '{old_key}' to '{new_key}'")
+        self.output += f"configuration renamed, from '{old_key}' to '{new_key}'" + "\n"
         
     def command_delete(self) -> None:
         """
@@ -214,6 +235,7 @@ class Organizer():
         Returns:
             _type_: _description_
         """
+        #TODO: figure out the last solution to input().
         name = input("enter the configuration name: ")
         name = self._name_exist(name, default_check=True)
         if name is None:
@@ -225,6 +247,7 @@ class Organizer():
         with open(path, mode="w") as save_file:
             json.dump(obj=self.saved_configs, fp=save_file, indent=4)
         print(f"configuration deleted: '{name}'")
+        self.output += f"configuration deleted: '{name}'" + "\n"
 
         
     # other functions, get called during commands()
@@ -259,6 +282,8 @@ class Organizer():
         """
         while self._config_name_exist(confirm_name=confirm_name):
             print(f"all previous saved names: {self._get_saved_names()}")
+            self.output += f"all previous saved names: {self._get_saved_names()}" + "\n"
+            #TODO: figure out the last solution to input().
             confirm_name = input('configuration name occupied, enter something else: ')
         return confirm_name
 
@@ -287,6 +312,7 @@ class Organizer():
         exist:list[str] | list = [key for (key, val) in self.saved_configs.items() if val == self.configs]
         if exist:
             print(f"this configuration already exist by name: '{exist[0]}', you can use !load and enter the name next time instead.")
+            self.output += f"this configuration already exist by name: '{exist[0]}', you can use !load and enter the name next time instead." + "\n"
             return True
         return False
     
@@ -302,6 +328,7 @@ class Organizer():
         with open(path, mode="w") as save_file:
             json.dump(obj=store_data, fp=save_file, indent=4)
         print(f"configuration saved successfully.")
+        self.output += f"configuration saved successfully." + "\n"
 
     def _update_saved_configs(self) -> None:
         """
@@ -336,8 +363,11 @@ class Organizer():
             return name
         while name not in self._get_saved_names():
             print(f"name didn't exist, all previous saved names: {self._get_saved_names()}")
+            self.output += f"name didn't exist, all previous saved names: {self._get_saved_names()}" + "\n"
+            #TODO: figure out the last solution to input().
             name = input("enter another iput: ")
             if default_check and name == 'default':
                 print('input most not be default.')
+                self.output += 'input most not be default.' + "\n"
                 name = "this placeholder surely will not be in config.json right?!~"
         return name
