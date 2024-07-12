@@ -25,6 +25,9 @@ class Converter:
         self.letter_space = ConvertTables.letter_space
         self.word_space = ConvertTables.word_space
         
+        # for demo only
+        self.history = ""
+        
         self.codes = self.morsecode_regulator()
         
     def morsecode_regulator(self) -> dict[str, str]:
