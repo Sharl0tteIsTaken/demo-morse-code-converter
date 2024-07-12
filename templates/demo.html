@@ -18,13 +18,13 @@
           </a>
           this is the demo of morse code converter.
         </div>
-        <a href="#popup-box-info" class="center" style="float: right; margin: 3px;">
+        <a href="#popup-box-info-1" class="center" style="float: right; margin: 3px;">
           <img src="../static/assets/svg/info.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
         </a>
         
-        <div id="popup-box-info" class="overlay">
+        <div id="popup-box-info-1" class="overlay">
           <div class="popup">
-            <h2>Converter introduction</h2>
+            <h2>Converter introduction - 1</h2>
             <a class="close" href="#">&times;</a>
             <div class="popup-text textsize-float">
 International Morse code is composed of five elements:
@@ -35,27 +35,61 @@ short gap:      short gap (between letters): three time units long.
 medium gap:     medium gap (between words): seven time units long.
 
 a `time unit` in this context is a letter.
-these five elements will be referred to as `configuration`
-when describing multiple set of elements will be referred to as `configurations`
-
-example:        convert text: 'test msg' into morse code will be:
+</div>
+            <div class="popup-button">
+              <a href="#popup-box-info-2" class="center">
+                <img src="../static/assets/svg/arrow-right.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="popup-box-info-2" class="overlay">
+          <div class="popup">
+            <h2>Converter introduction - 2</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="popup-text textsize-float">
+example:        
+convert text: 'test msg' into morse code will be:
 '-   .   . . .   -       - -   . . .   - - .'
 ^   ^    ^          ^               ^
 |   ||   |          |               |
 dash dot inter gap  medium gap      short gap
-
+            </div>
+            <div class="popup-button">
+              <a href="#popup-box-info-1" class="center">
+              <img src="../static/assets/svg/arrow-left.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+            </a>
+            <div style="width: 2rem;"></div>
+            <a href="#popup-box-info-3" class="center">
+              <img src="../static/assets/svg/arrow-right.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+            </a>
+            </div>
+          </div>
+        </div>
+        <div id="popup-box-info-3" class="overlay">
+          <div class="popup">
+            <h2>Converter introduction - 3</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="popup-text textsize-float">
 in other words:
 '-   .   . . .   -       - -   . . .   - - .'
 't...e...  s  ...t....... m ...  s  ...  g  '
 (here uses '.' to replace spaces for clarification)
 t converts into '-', this is `dash`
 e converts into '.', this is `dot`
-s converts into '. . .', with a space in between morse codes, the space is `inter gap`
+s converts into '. . .', with a space(inter gap) between morse codes
 spaces(three) in between two letter(t and e in test) is `short gap`
 spaces(seven) in between two word(test and msg) is `medium gap`
             </div>
+            <div class="popup-button">
+              <a href="#popup-box-info-2" class="center">
+                <img src="../static/assets/svg/arrow-left.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+              </a>
+            </div>
           </div>
         </div>
+
+
       </div>
 
       <div class="terminal-history" id="terminal-history">

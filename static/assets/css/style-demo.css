@@ -39,7 +39,7 @@ button {
     padding: 20px;
     background: #fff;
     border-radius: 5px;
-    width: 70%;
+    width: 80%;
     position: relative;
     transition: all 1.5s ease-in-out;
 }
@@ -64,14 +64,10 @@ button {
     color: #06D85F;
 }
 
-  
-@media screen and (max-width: 700px){
-    .box{
-      width: 70%;
-    }
-    .popup{
-      width: 70%;
-    }
+.popup-button {
+    width:100%;
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 1600px) {
@@ -80,15 +76,54 @@ button {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+    .textsize-float {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 1250px) {
     .textsize-float {
         font-size: 20px;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+    .textsize-float {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1000px) {
     .textsize-float {
         font-size: 15px;
+    }
+    .popup h2 {
+        font-size: smaller;
+    }
+}
+
+@media (max-width: 850px) {
+    .textsize-float {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 750px) {
+    .textsize-float {
+        font-size: 12px;
+    }
+    .popup h2 {
+        font-size: x-large;
+    }
+}
+
+@media (max-width: 680px) {
+    .textsize-float {
+        font-size: 10px;
+    }
+    .popup h2 {
+        font-size: large;
     }
 }
 
