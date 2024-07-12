@@ -72,6 +72,7 @@
               <!-- autofocus cite: https://stackoverflow.com/questions/26790990/html-input-always-in-focus -->
               <textarea 
               name="user_input" 
+              id="user_input"
               type="text" 
               oninput="this.parentNode.dataset.value = this.value" 
               onblur="this.focus()"
@@ -134,6 +135,13 @@
               }
             });
         });
+      });
+      
+      $("#user_input").keypress(function (e) {
+        if(e.which === 13 && !e.shiftKey) {
+          e.preventDefault();
+          $(this).closest("form").submit();
+        }
       });
     </script>
   </body>
