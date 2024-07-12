@@ -26,33 +26,33 @@
           <div class="popup">
             <h2>Converter introduction</h2>
             <a class="close" href="#">&times;</a>
-            <div class="popup-text textsize-float" style="z-index: 2;">
-              International Morse code is composed of five elements:
-              dot:            short mark, dot or dit: one time unit long.
-              dash:           long mark, dash or dah: three time units long.
-              inter gap:      inter-element gap between the dots and dashs within a character: one unit long.
-              short gap:      short gap (between letters): three time units long.
-              medium gap:     medium gap (between words): seven time units long.
-              
-              a `time unit` in this context is a letter.
-              these five elements will be referred to as `configuration`
-              when describing multiple set of elements will be referred to as `configurations`
-              
-              <!-- example:        convert text: 'test msg' into morse code will be:
-              '-   .   . . .   -       - -   . . .   - - .'
-              ^   ^    ^          ^               ^
-              |   ||   |          |               |
-              dash dot inter gap  medium gap      short gap
-              
-              in other words:
-              '-   .   . . .   -       - -   . . .   - - .'
-              't...e...  s  ...t....... m ...  s  ...  g  '
-              (here uses '.' to replace spaces for clarification)
-              t converts into '-', this is `dash`
-              e converts into '.', this is `dot`
-              s converts into '. . .', with a space in between morse codes, the space is `inter gap`
-              spaces(three) in between two letter(t and e in test) is `short gap`
-              spaces(seven) in between two word(test and msg) is `medium gap` -->
+            <div class="popup-text textsize-float">
+International Morse code is composed of five elements:
+dot:            short mark, dot or dit: one time unit long.
+dash:           long mark, dash or dah: three time units long.
+inter gap:      inter-element gap(between dots & dashs): one unit long.
+short gap:      short gap (between letters): three time units long.
+medium gap:     medium gap (between words): seven time units long.
+
+a `time unit` in this context is a letter.
+these five elements will be referred to as `configuration`
+when describing multiple set of elements will be referred to as `configurations`
+
+example:        convert text: 'test msg' into morse code will be:
+'-   .   . . .   -       - -   . . .   - - .'
+^   ^    ^          ^               ^
+|   ||   |          |               |
+dash dot inter gap  medium gap      short gap
+
+in other words:
+'-   .   . . .   -       - -   . . .   - - .'
+'t...e...  s  ...t....... m ...  s  ...  g  '
+(here uses '.' to replace spaces for clarification)
+t converts into '-', this is `dash`
+e converts into '.', this is `dot`
+s converts into '. . .', with a space in between morse codes, the space is `inter gap`
+spaces(three) in between two letter(t and e in test) is `short gap`
+spaces(seven) in between two word(test and msg) is `medium gap`
             </div>
           </div>
         </div>
@@ -137,6 +137,7 @@
         });
       });
       
+      // cite: https://stackoverflow.com/questions/8934088/how-to-make-enter-key-in-a-textarea-submit-a-form 
       $("#user_input").keypress(function (e) {
         if(e.which === 13 && !e.shiftKey) {
           e.preventDefault();
