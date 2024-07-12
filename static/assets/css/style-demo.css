@@ -125,13 +125,6 @@ p {
     white-space: pre-wrap;
 }
 
-.content {
-    background-color: #141414;
-    height: 7vh;
-    display:inline-block;
-    width: 100%;
-}
-
 .input-sizer {
     background-color: #141414;
     display: inline-grid;
@@ -152,6 +145,8 @@ p {
     visibility: hidden;
     font-family: inherit;
     font-size: inherit;
+    /* causes white space to show despite `visibility: hidden` */
+    /* white-space: pre-wrap;  */
 }
 
 textarea {
