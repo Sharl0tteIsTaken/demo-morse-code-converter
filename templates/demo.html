@@ -26,7 +26,7 @@
           <div class="popup">
             <h2>Converter introduction</h2>
             <a class="close" href="#">&times;</a>
-            <div class="popup-text textsize-float">
+            <div class="popup-text textsize-float" style="z-index: 2;">
               International Morse code is composed of five elements:
               dot:            short mark, dot or dit: one time unit long.
               dash:           long mark, dash or dah: three time units long.
@@ -73,6 +73,7 @@
               <textarea 
               name="user_input" 
               type="text" 
+              oninput="this.parentNode.dataset.value = this.value" 
               onblur="this.focus()"
               autocomplete="off" 
               autocorrect="off" 
@@ -81,7 +82,6 @@
               size="1" 
               value="" 
               autofocus
-              wrap="soft"
               ></textarea>
             </label>
             <input type="submit" value="" class="input-button">
