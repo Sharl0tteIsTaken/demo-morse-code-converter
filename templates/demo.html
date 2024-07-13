@@ -57,12 +57,12 @@ dash dot inter gap  medium gap      short gap
             </div>
             <div class="popup-button">
               <a href="#popup-box-info-1" class="center">
-              <img src="../static/assets/svg/arrow-left.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
-            </a>
-            <div style="width: 2rem;"></div>
-            <a href="#popup-box-info-3" class="center">
-              <img src="../static/assets/svg/arrow-right.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
-            </a>
+                <img src="../static/assets/svg/arrow-left.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+              </a>
+              <div style="width: 2rem;"></div>
+              <a href="#popup-box-info-3" class="center">
+                <img src="../static/assets/svg/arrow-right.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+              </a>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ spaces(seven) in between two word(test and msg) is `medium gap`
       </div>
 
       <div class="content" id="Content">
-        <div id="consoleInput-undefined">
+        <div class="consoleInput-undefined">
           <form method="post" id="input-form">
             <label class="textsize-float">></label>
             <label class="input-sizer" data-value="">
@@ -109,7 +109,6 @@ spaces(seven) in between two word(test and msg) is `medium gap`
               id="user_input"
               type="text" 
               oninput="this.parentNode.dataset.value = this.value" 
-              onblur="this.focus()"
               autocomplete="off" 
               autocorrect="off" 
               autocapitalize="off" 
@@ -119,6 +118,7 @@ spaces(seven) in between two word(test and msg) is `medium gap`
               value="" 
               autofocus
               ></textarea>
+              <!-- TODO: make autofocus only happen when keyboard enter not with mouse clicks and selects -->
             </label>
             <input type="submit" value="" class="input-button">
           </form>
