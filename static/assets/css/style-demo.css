@@ -151,13 +151,14 @@ button {
     color: rgb(187, 187, 187);
     font-size: 30px;
     font-weight: 100;
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    width: 100%;
+    flex-grow : 1;
 }
 
 .consoleInput-undefined {
@@ -166,6 +167,7 @@ button {
 
 form {
     height: 100%;
+    margin: 0;
 }
 
 .terminal-line {
@@ -194,8 +196,8 @@ p {
     position: relative;
     font-family: inherit;
     font-size: inherit;
-    height: 100%;
-    width: 95%;
+    height: 97%;
+    width: 97%;
 }
 
 .input-sizer::after 
@@ -216,7 +218,6 @@ textarea {
     padding: 0;
     resize: none;
     width: 100%;
-    height: 100%;
 }
 
 textarea:focus {
@@ -226,7 +227,7 @@ textarea:focus {
   
 
 /* highlight text in input */
-textarea::selection {
+::selection {
     background-color: grey;
     color: white;
 }

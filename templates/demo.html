@@ -13,13 +13,17 @@
     <div class="terminal" id="Terminal">
       <div class="console-line">
         <div class="textsize-float">
-          <a href="{{ url_for('demo') }}" class="center">
+          <a href="{{ url_for('home') }}" class="center">
             <img src="../static/assets/svg/return-home.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain left-pointed arrow, represents returns to home page." height="30">
           </a>
           this is the demo of morse code converter.
         </div>
         <a href="#popup-box-info-1" class="center" style="float: right; margin: 3px;">
           <img src="../static/assets/svg/info.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
+        </a>
+        <div style="width: 2rem;"></div>
+        <a href="{{ url_for('reset_terminal_history') }}" class="center" title="clear history of conversion." style="float: right; margin: 3px;">
+          <img src="../static/assets/svg/eraser.svg" class="svg-whitened align-middle" alt="a line draw image of a eraser, represents clear history of conversion." height="30">
         </a>
         
         <div id="popup-box-info-1" class="overlay">
@@ -35,7 +39,7 @@ short gap:      short gap (between letters): three time units long.
 medium gap:     medium gap (between words): seven time units long.
 
 a `time unit` in this context is a letter.
-</div>
+          </div>
             <div class="popup-button">
               <a href="#popup-box-info-2" class="center">
                 <img src="../static/assets/svg/arrow-right.svg" class="svg-whitened align-middle" alt="a line draw image of a box contain a letter i, represents show game infomation." height="30">
@@ -88,8 +92,6 @@ spaces(seven) in between two word(test and msg) is `medium gap`
             </div>
           </div>
         </div>
-
-
       </div>
 
       <div class="terminal-history" id="terminal-history">
@@ -101,6 +103,8 @@ spaces(seven) in between two word(test and msg) is `medium gap`
       <div class="content" id="Content">
         <div class="consoleInput-undefined">
           <form method="post" id="input-form">
+            <label class="textsize-float">enter text to convert into morse code: </label>
+            <br>
             <label class="textsize-float">></label>
             <label class="input-sizer" data-value="">
               <!-- autofocus cite: https://stackoverflow.com/questions/26790990/html-input-always-in-focus -->
@@ -114,11 +118,10 @@ spaces(seven) in between two word(test and msg) is `medium gap`
               autocapitalize="off" 
               spellcheck="false" 
               size="1" 
-              rows="3"
+              rows="5"
               value="" 
               autofocus
               ></textarea>
-              <!-- TODO: make autofocus only happen when keyboard enter not with mouse clicks and selects -->
             </label>
             <input type="submit" value="" class="input-button">
           </form>
